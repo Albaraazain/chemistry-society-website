@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Event Registration</title>
+    <!-- Link to your CSS file -->
+    <link
+      rel="stylesheet"
+      href="631b2b6b3e54dc0ee657a87b\css\open-kitchen-labs.e9a4ad9e0.css"
+    />
+  </head>
+  <body>
+    <!-- Page Wrapper -->
+    <div class="page-wrapper">
+      <!-- Header Component -->
+      <header class="header_component">
+        <div class="header_body page-padding">
+          <!-- Logo -->
+          <a href="index.html" class="header_brand-link">
+            <img src="images/logo.png" alt="Logo" class="header_brand-logo" />
+          </a>
+          <!-- Navigation -->
+          <nav class="header_nav">
+            <a href="index.html" class="header_nav-link">Home</a>
+            <a href="events.html" class="header_nav-link">Events</a>
+            <a href="contact.html" class="header_nav-link">Contact</a>
+          </nav>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="main-wrapper">
+        <!-- Event Registration Section -->
+        <section class="section-contact-hero">
+          <div class="page-padding">
+            <div class="container">
+              <div class="contact-hero_wrapper is-full">
+                <!-- Event Details -->
+                <div class="contact-left cc-new">
+                  <div class="title-wrapper">
+                    <h1 class="h1" id="event-title">Loading Event Title...</h1>
+                    <p class="text-size-l" id="event-date">
+                      Loading Event Date...
+                    </p>
+                  </div>
+                  <div class="event-details" id="event-details">
+                    <!-- Event details will be populated here -->
+                  </div>
+                  <!-- Registration Form -->
+                  <form
+                    action="#"
+                    method="post"
+                    class="contact-form"
+                    id="registration-form"
+                  >
+                    <!-- Hidden field for Event ID -->
+                    <input type="hidden" name="event_id" id="event_id" />
+                    <!-- Name Field -->
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Your Name"
+                      required
+                      class="contact-form_input"
+                    />
+                    <!-- Email Field -->
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Your Email"
+                      required
+                      class="contact-form_input"
+                    />
+                    <!-- Phone Field -->
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Your Phone Number"
+                      class="contact-form_input"
+                    />
+                    <!-- Message Field -->
+                    <textarea
+                      name="message"
+                      placeholder="Additional Message"
+                      class="contact-form_input is-area"
+                    ></textarea>
+                    <!-- Consent Checkbox -->
+                    <label class="contact-form_checkbox w-checkbox">
+                      <input
+                        type="checkbox"
+                        name="consent"
+                        required
+                        class="contact-form_checkbox-check w-checkbox-input"
+                      />
+                      <span class="w-form-label"
+                        >I agree to the
+                        <a href="terms.html" class="text-link-purple"
+                          >terms and conditions</a
+                        >.</span
+                      >
+                    </label>
+                    <!-- Submit Button -->
+                    <button type="submit" class="button-primary">
+                      Register Now
+                    </button>
+                  </form>
+                </div>
+                <!-- Event Image -->
+                <div class="contact_image-wrapper">
+                  <img
+                    src="images/default-event.jpg"
+                    alt="Event Image"
+                    class="contact_image"
+                    id="event-image"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer Component -->
+      <footer class="footer_component">
+        <div class="page-padding">
+          <div class="footer_body">
+            <div class="footer_nav">
+              <a href="privacy.html" class="footer_link">Privacy Policy</a>
+              <a href="terms.html" class="footer_link">Terms of Service</a>
+            </div>
+            <p class="text-size-s">
+              &copy; 2023 Your Company Name. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      // Get the event_id from the URL query parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const eventId = parseInt(urlParams.get("event_id"));
+    
+      // Function to display event details
+      function displayEventDetails(event) {
+        if (event) {
+          // Update the event title
+          document.getElementById("event-title").textContent = event.title;
+    
+          // Update the event date
+          document.getElementById("event-date").textContent = `${event.date} | ${event.time}`;
+    
+          // Update the event description
+          const eventDetailsContainer = document.getElementById("event-details");
+          eventDetailsContainer.innerHTML = `
+            <p class="text-size-l">${event.description}</p>
+            <ul class="event-details-list">
+              ${event.details.map(detail => `<li class="event-detail-item">${detail}</li>`).join('')}
+            </ul>
+          `;
+    
+          // Update the event image
+          document.getElementById("event-image").src = event.image;
+          document.getElementById("event-image").alt = event.title;
+    
+          // Set the hidden event_id input value
+          document.getElementById("event_id").value = event.id;
+        } else {
+          // Event not found
+          document.getElementById("event-title").textContent = "Event Not Found";
+          document.getElementById("event-date").textContent = "";
+          document.getElementById("event-details").innerHTML = `
+            <p class="text-size-l">Sorry, the event you're looking for does not exist.</p>
+          `;
+    
+          // Hide the registration form
+          document.getElementById("registration-form").style.display = "none";
+        }
+      }
+    
+      // Fetch events from JSON file
+      fetch('events.json')
+        .then(response => response.json())
+        .then(data => {
+          const event = data.events.find(e => e.id === eventId);
+          displayEventDetails(event);
+        })
+        .catch(error => console.error('Error loading event details:', error));
+    </script>
+  </body>
+</html>
