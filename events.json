@@ -1,34 +1,32 @@
 {
-    "events": [
-      {
-        "id": 1,
-        "title": "Chemistry Workshop: Exploring Organic Compounds",
-        "description": "Join us for an interactive workshop where we'll delve into the world of organic chemistry with hands-on experiments.",
-        "date": "March 15, 2024",
-        "time": "10:00 AM - 2:00 PM",
-        "location": "Chemistry Lab, Building A",
-        "image": "631b2b6b3e54dc0ee657a87b/compounds.png",
-        "details": [
-          "Hands-on experiments with organic compounds",
-          "Learn about molecular structures",
-          "Explore real-world applications of organic chemistry",
-          "Suitable for beginners and intermediate learners"
-        ]
-      },
-      {
-        "id": 2,
-        "title": "Guest Lecture: Innovations in Chemical Engineering",
-        "description": "A special lecture by Dr. Alan Brown discussing the latest advancements in chemical engineering and their real-world applications.",
-        "date": "April 5, 2024",
-        "time": "3:00 PM - 5:00 PM",
-        "location": "Auditorium, Building C",
-        "image": "631b2b6b3e54dc0ee657a87b/chemestry_lab.png",
-        "details": [
-          "Presentation by renowned chemical engineer Dr. Alan Brown",
-          "Q&A session with the speaker",
-          "Networking opportunity with industry professionals",
-          "Certificate of attendance provided"
-        ]
-      }
-    ]
-  }
+  "events": [
+    {
+      "id": 1,
+      "title": "Chemistry Workshop: The Art of Candle Making",
+      "description": "Join us for an interactive workshop where we'll explore the chemistry behind candle making and create your own custom scented candles.",
+      "date": "March 15, 2024",
+      "time": "10:00 AM - 2:00 PM",
+      "location": "Chemistry Lab, Building R",
+      "image": "631b2b6b3e54dc0ee657a87b/event-candle-making.png",
+      "details": [
+        "Learn about wax types and their properties",
+        "Explore the science of fragrances and essential oils",
+        "Hands-on experience in creating your own candles",
+        "Understand the chemistry of combustion in candles",
+        "Take home your custom-made candles"
+      ],
+      "sessions": [
+        {
+          "id": 1,
+          "title": "Morning Session",
+          "time": "10:00 AM - 12:00 PM"
+        },
+        {
+          "id": 2,
+          "title": "Afternoon Session",
+          "time": "12:30 PM - 2:30 PM"
+        }
+      ]
+    }
+  ]
+}
